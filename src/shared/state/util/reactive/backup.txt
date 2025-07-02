@@ -1,0 +1,424 @@
+export type ValueStore<T> = {
+  get value(): Readonly<T>;
+  set(newValue: T): void;
+};
+
+export type ReactiveNumber = ValueStore<number> & {
+  subscribe(callback: () => void): () => void;
+};
+
+export type ReactiveBoolean = ValueStore<boolean> & {
+  subscribe(callback: () => void): () => void;
+};
+
+export type ReactiveString = ValueStore<string> & {
+  subscribe(callback: () => void): () => void;
+};
+
+export type ReactivePrimitiveArray<T extends (string | number | boolean)[]> =
+  ValueStore<T> & {
+    subscribe(callback: () => void): () => void;
+  };
+
+export type ReactiveObjectArray<T extends Record<string, any>[]> =
+  ValueStore<T> & {
+    subscribe(callback: () => void): () => void;
+    addToBeginning(
+      value: T[number],
+      ignoreIfExistsFilter?: (
+        value: T[number],
+        index: number,
+        array: T
+      ) => boolean
+    ): void;
+    addToEnd(
+      value: T[number],
+      ignoreIfExistsFilter?: (
+        value: T[number],
+        index: number,
+        array: T
+      ) => boolean
+    ): void;
+    removeFromBeginning(
+      ignoreIfExistsFilter?: (
+        value: T[number],
+        index: number,
+        array: T
+      ) => boolean
+    ): void;
+    removeFromEnd(
+      ignoreIfExistsFilter?: (
+        value: T[number],
+        index: number,
+        array: T
+      ) => boolean
+    ): void;
+    removeAtIndex(index: number): void;
+    removeWhere(
+      filter: (value: T[number], index: number, array: T) => boolean
+    ): void;
+    removeOne(
+      query: (value: T[number], index: number, array: T) => boolean
+    ): T[number] | null;
+    removeOneOrThrow(
+      query: (value: T[number], index: number, array: T) => boolean
+    ): T[number];
+    updateOne(
+      query: (value: T[number], index: number, array: T) => boolean,
+      value:
+        | T[number]
+        | Partial<T[number]>
+        | ((current: T[number]) => T[number])
+    ): T[number] | null;
+    updateOneOrThrow(
+      query: (value: T[number], index: number, array: T) => boolean,
+      value: T[number] | Partial<T[number]>
+    ): T[number];
+    updateAt(
+      index: number,
+      value: T[number] | Partial<T[number]>
+    ): T[number] | null;
+    upsertOne(
+      predicate: (value: T[number], index: number, array: T) => boolean,
+      value: T[number],
+      position?: "beginning" | "end"
+    ): void;
+  };
+
+export type ReactiveObject<T extends Record<string, any>> = ValueStore<T> & {
+  subscribe(callback: () => void): () => void;
+  updateAtPath<K extends keyof T>(path: K, value: T[K]): void;
+  update(value: Partial<T>): void;
+};
+
+export type Reactive<T> =
+  | ReactiveNumber
+  | ReactiveBoolean
+  | ReactiveString
+  | ReactiveObjectArray<T extends Record<string, any>[] ? T : never>
+  | ReactiveObject<T extends Record<string, any> ? T : never>
+  | ReactivePrimitiveArray<T extends (string | number | boolean)[] ? T : never>;
+
+export function reactive(initialValue: number): ReactiveNumber;
+export function reactive(initialValue: boolean): ReactiveBoolean;
+export function reactive(initialValue: string): ReactiveString;
+export function reactive<T extends (string | number | boolean)[]>(
+  initialValue: T
+): ReactivePrimitiveArray<T>;
+export function reactive<T extends Record<string, any>[]>(
+  initialValue: T
+): ReactiveObjectArray<T>;
+export function reactive<T extends Record<string, any>>(
+  initialValue: T
+): ReactiveObject<T>;
+export function reactive<T>(initialValue: T): Reactive<T> {
+  let value = initialValue;
+  const subscribers: {
+    [subscriberId: string]: () => void;
+  } = {};
+
+  function publish() {
+    Object.values(subscribers).forEach((callback) => callback());
+  }
+
+  if (typeof value === "number") {
+    const returnType: ReactiveNumber = {
+      get value() {
+        return value as Readonly<number>;
+      },
+      set: (newValue: number) => {
+        if (typeof newValue === "number" && !isNaN(newValue)) {
+          value = newValue as T;
+          publish();
+        } else {
+          throw new Error("Invalid number value");
+        }
+      },
+      subscribe: (callback: () => void) => {
+        const subscriberId = Math.random().toString(36).substring(2, 15);
+        subscribers[subscriberId] = callback;
+        return () => {
+          delete subscribers[subscriberId];
+        };
+      },
+    };
+    return returnType;
+  }
+  if (typeof value === "boolean") {
+    const returnType: ReactiveBoolean = {
+      get value() {
+        return value as Readonly<boolean>;
+      },
+      set: (newValue: boolean) => {
+        value = newValue as T;
+        publish();
+      },
+      subscribe: (callback: () => void) => {
+        const subscriberId = Math.random().toString(36).substring(2, 15);
+        subscribers[subscriberId] = callback;
+        return () => {
+          delete subscribers[subscriberId];
+        };
+      },
+    };
+    return returnType;
+  }
+  if (typeof value === "string") {
+    const returnType: ReactiveString = {
+      get value() {
+        return value as Readonly<string>;
+      },
+      set: (newValue: string) => {
+        value = newValue as T;
+        publish();
+      },
+      subscribe: (callback: () => void) => {
+        const subscriberId = Math.random().toString(36).substring(2, 15);
+        subscribers[subscriberId] = callback;
+        return () => {
+          delete subscribers[subscriberId];
+        };
+      },
+    };
+    return returnType;
+  }
+  if (Array.isArray(value)) {
+    type U = T extends Array<infer R>
+      ? R extends Record<string, any>
+        ? R
+        : R extends string | number | boolean
+        ? R
+        : never
+      : never;
+
+    const returnType: ReactiveObjectArray<U[]> = {
+      get value() {
+        return value as Readonly<U[]>;
+      },
+      set: (newValue: U) => {
+        value = newValue;
+        publish();
+      },
+      addToBeginning(
+        valueToAdd: U,
+        ignoreIfExistsFilter?: (value: U, index: number, array: U[]) => boolean
+      ) {
+        if (!ignoreIfExistsFilter) {
+          (value as T & Record<string, any>[]).unshift(valueToAdd);
+          publish();
+        } else {
+          const index = (value as T & Record<string, any>[]).findIndex(
+            ignoreIfExistsFilter as any
+          );
+          if (index === -1) {
+            (value as T & Record<string, any>[]).unshift(valueToAdd);
+            publish();
+          }
+        }
+      },
+      addToEnd(
+        valueToAdd: U,
+        ignoreIfExistsFilter?: (value: U, index: number, array: U[]) => boolean
+      ) {
+        if (!ignoreIfExistsFilter) {
+          (value as T & Record<string, any>[]).push(valueToAdd);
+          publish();
+        } else {
+          const index = (value as T & Record<string, any>[]).findIndex(
+            ignoreIfExistsFilter as any
+          );
+          if (index === -1) {
+            (value as T & Record<string, any>[]).push(valueToAdd);
+            publish();
+          }
+        }
+      },
+      removeFromBeginning(
+        ignoreIfExistsFilter?: (value: U, index: number, array: U[]) => boolean
+      ) {
+        if (!ignoreIfExistsFilter) {
+          (value as T & Record<string, any>[]).shift();
+          publish();
+        } else {
+          const index = (value as T & Record<string, any>[]).findIndex(
+            ignoreIfExistsFilter as any
+          );
+          if (index !== -1) {
+            (value as T & Record<string, any>[]).splice(index, 1);
+            publish();
+          }
+        }
+      },
+      removeFromEnd(
+        ignoreIfExistsFilter?: (value: U, index: number, array: U[]) => boolean
+      ) {
+        if (!ignoreIfExistsFilter) {
+          (value as T & Record<string, any>[]).pop();
+          publish();
+        } else {
+          const index = (value as T & Record<string, any>[]).findIndex(
+            ignoreIfExistsFilter as any
+          );
+          if (index !== -1) {
+            (value as T & Record<string, any>[]).splice(index, 1);
+            publish();
+          }
+        }
+      },
+      removeAtIndex(index: number) {
+        if (index >= 0) {
+          (value as T & Record<string, any>[]).splice(index, 1);
+          publish();
+        }
+      },
+      removeWhere(filter: (value: U, index: number, array: U[]) => boolean) {
+        const filtered = (value as T & Record<string, any>[]).filter(
+          (v, i, arr) => !filter(v as U, i, arr as U[])
+        );
+        if (filtered.length !== (value as U[]).length) {
+          value = filtered as T;
+          publish();
+        }
+      },
+      removeOne(
+        query: (value: U, index: number, array: U[]) => boolean
+      ): U | null {
+        const index = (value as T & Record<string, any>[]).findIndex(
+          query as any
+        );
+        if (index !== -1) {
+          const removed = (value as T & Record<string, any>[]).splice(
+            index,
+            1
+          )[0];
+          publish();
+          return removed as U;
+        }
+        return null;
+      },
+      removeOneOrThrow(
+        query: (value: U, index: number, array: U[]) => boolean
+      ): U {
+        const index = (value as U[]).findIndex(query);
+        if (index === -1) {
+          throw new Error("No matching element found");
+        }
+        const removed = (value as T & Record<string, any>[]).splice(
+          index,
+          1
+        )[0];
+        publish();
+        return removed as U;
+      },
+      updateOne(
+        query: (value: U, index: number, array: U[]) => boolean,
+        newValue: U | Partial<U> | ((current: U) => U)
+      ): U | null {
+        const index = (value as U[]).findIndex(query);
+        if (index === -1) {
+          return null;
+        }
+        const current = (value as U[])[index];
+        const updatedValue =
+          typeof newValue === "function"
+            ? (newValue as (current: U) => U)(current as U)
+            : {
+                ...(current as any),
+                ...(newValue as Partial<U>),
+              };
+        (value as U[])[index] = updatedValue;
+        publish();
+        return updatedValue as U;
+      },
+      updateOneOrThrow(
+        query: (value: U, index: number, array: U[]) => boolean,
+        newValue: U | Partial<U>
+      ): U {
+        const index = (value as U[]).findIndex(query);
+        if (index === -1) {
+          throw new Error("No matching element found");
+        }
+        const current = (value as U[])[index];
+        const updatedValue = {
+          ...(current as any),
+          ...(newValue as Partial<U>),
+        } as U;
+        (value as U[])[index] = updatedValue;
+        publish();
+        return updatedValue;
+      },
+      updateAt(index: number, newValue: U | Partial<U>): U | null {
+        if (index < 0 || index >= (value as U[]).length) {
+          return null;
+        }
+        const current = (value as T & Record<string, any>[])[index];
+        const updatedValue = {
+          ...current,
+          ...(newValue as Partial<(T & Record<string, any>[])[number]>),
+        } as U;
+        (value as U[])[index] = updatedValue;
+        publish();
+        return updatedValue as U;
+      },
+      upsertOne(
+        predicate: (value: U, index: number, array: U[]) => boolean,
+        newValue: U,
+        position: "beginning" | "end" = "end"
+      ) {
+        const index = (value as U[]).findIndex(predicate);
+        if (index !== -1) {
+          (value as U[])[index] = newValue;
+        } else {
+          if (position === "beginning") {
+            (value as U[]).unshift(newValue);
+          } else {
+            (value as U[]).push(newValue);
+          }
+        }
+        publish();
+      },
+      subscribe: (callback: () => void) => {
+        const subscriberId = Math.random().toString(36).substring(2, 15);
+        subscribers[subscriberId] = callback;
+        return () => {
+          delete subscribers[subscriberId];
+        };
+      },
+    };
+
+    // @ts-expect-error don't know why this is needed
+    return returnType as ReactiveObjectArray<U[]>;
+  }
+  type U = T extends Record<string, any> ? T : never;
+  const returnType: ReactiveObject<U> = {
+    get value() {
+      return value as Readonly<U>;
+    },
+    set: (newValue: U) => {
+      value = newValue;
+      publish();
+    },
+    update(updates: Partial<U>) {
+      console.log("got update request");
+      value = { ...value, ...updates } as U;
+      publish();
+    },
+    updateAtPath<K extends keyof U>(path: K, v: U[K]) {
+      (value as U)[path] = v;
+      publish();
+    },
+    subscribe: (callback: () => void) => {
+      const subscriberId = Math.random().toString(36).substring(2, 15);
+      subscribers[subscriberId] = callback;
+      return () => {
+        delete subscribers[subscriberId];
+      };
+    },
+  };
+  return returnType as Reactive<T>;
+}
+
+/**
+ * a) pass union type to reactive to make it easier to determine the type of the reactive object
+ * b) or create smaller reactive functions for each type
+ */

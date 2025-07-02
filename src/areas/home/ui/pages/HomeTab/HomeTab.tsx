@@ -1,0 +1,80 @@
+import {
+  IonButtons,
+  IonCard,
+  IonCardContent,
+  IonCol,
+  IonContent,
+  IonGrid,
+  IonHeader,
+  IonMenuButton,
+  IonPage,
+  IonRow,
+  IonText,
+  IonTitle,
+  IonToolbar,
+} from "@ionic/react";
+
+export const HomeTab: React.FC = () => {
+  return (
+    <IonPage>
+      <IonHeader>
+        <IonToolbar color="light">
+          <IonTitle>Home</IonTitle>
+        </IonToolbar>
+      </IonHeader>
+      <IonContent fullscreen color="lightest">
+        <IonGrid>
+          <IonRow>
+            <IonCol size="12" sizeLg="6" sizeXl="6">
+              <IonRow>
+                <IonCol
+                  size="6"
+                  sizeLg="4"
+                  sizeXl="4"
+                  className="ion-text-center"
+                >
+                  <IonCard color="light">
+                    <IonCardContent>
+                      <h3>Welcome Back! </h3>
+                      {/* <h4>{user$.get().name}</h4> */}
+                    </IonCardContent>
+                  </IonCard>
+                </IonCol>
+                <IonCol
+                  size="6"
+                  sizeLg="4"
+                  sizeXl="4"
+                  className="ion-text-center"
+                >
+                  <IonCard color="primary">
+                    <IonCardContent>
+                      <IonText color="dark">
+                        <h3>Available Funds</h3>
+                      </IonText>
+                      <h4
+                        style={{
+                          fontWeight: "bold",
+                          marginTop: "8px",
+                          fontSize: "1.1rem",
+                        }}
+                      >
+                        $2,032.55
+                      </h4>
+                    </IonCardContent>
+                  </IonCard>
+                </IonCol>
+                <IonCol
+                  size="6"
+                  sizeLg="4"
+                  sizeXl="4"
+                  className="ion-text-center"
+                ></IonCol>
+              </IonRow>
+            </IonCol>
+            <IonCol size="12" sizeLg="6" sizeXl="6"></IonCol>
+          </IonRow>
+        </IonGrid>
+      </IonContent>
+    </IonPage>
+  );
+};

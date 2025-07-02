@@ -14,7 +14,17 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    // "baseUrl": ".",
+    "paths": {
+      "@shared/*": ["./src/shared/*"],
+      "@loans/*": ["./src/areas/loans/*"],
+      "@auth/*": ["./src/areas/auth/*"],
+      "@home/*": ["./src/areas/home/*"],
+      "@banking/*": ["./src/areas/banking/*"],
+      "@credit-card/*": ["./src/areas/credit-card/*"],
+      "@invest/*": ["./src/areas/invest/*"]
+    }
   },
   "include": ["src"],
   "references": [{ "path": "./tsconfig.node.json" }]
