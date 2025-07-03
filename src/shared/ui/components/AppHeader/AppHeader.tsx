@@ -12,6 +12,9 @@ import {
   cashOutline,
   cloudyNight,
   sunny,
+  person,
+  personOutline,
+  personCircleOutline,
 } from "ionicons/icons";
 import { useEffect, useState } from "react";
 import { useReactive } from "../../hooks/useReactive/useReactive";
@@ -84,6 +87,31 @@ export function AppHeader() {
             }}
           />
           <IonButtons slot="end" style={{ marginRight: "10px" }}>
+            <IonButton
+              slot="icon-only"
+              size="small"
+              style={{
+                maxHeight: "28px",
+                maxWidth: "28px",
+                minWidth: "28px",
+                minHeight: "28px",
+                padding: "0",
+                "--padding-start": "0px",
+                "--padding-end": "0px",
+                "--padding-top": "0",
+                "--padding-bottom": "0",
+              }}
+              role="button"
+              color="lightest"
+              fill="clear"
+              shape="round"
+            >
+              <IonIcon
+                icon={personCircleOutline}
+                color="lightest"
+                style={{ width: "28px", height: "28px" }}
+              />
+            </IonButton>
             <IonButton
               size="small"
               style={{

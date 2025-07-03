@@ -1,4 +1,6 @@
 import {
+  IonBackButton,
+  IonButtons,
   IonContent,
   IonHeader,
   IonPage,
@@ -6,12 +8,15 @@ import {
   IonToolbar,
 } from "@ionic/react";
 
-export const CreditCardTab: React.FC = () => {
+export const NotificationsListPage: React.FC = () => {
   return (
     <IonPage>
       <IonHeader>
         <IonToolbar color="light">
-          <IonTitle>Credit Card</IonTitle>
+          <IonButtons slot="start">
+            <IonBackButton defaultHref="/home" text="" />
+          </IonButtons>
+          <IonTitle>Notifications</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen color="lightest"></IonContent>

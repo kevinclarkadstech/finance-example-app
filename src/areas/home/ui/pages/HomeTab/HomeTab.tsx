@@ -6,20 +6,28 @@ import {
   IonContent,
   IonGrid,
   IonHeader,
-  IonMenuButton,
   IonPage,
   IonRow,
   IonText,
   IonTitle,
   IonToolbar,
+  useIonRouter,
 } from "@ionic/react";
+import { NotificationsButton } from "@shared/ui/components/NotificationsButton/NotificationsButton";
 
 export const HomeTab: React.FC = () => {
+  const router = useIonRouter();
   return (
     <IonPage>
       <IonHeader>
         <IonToolbar color="light">
           <IonTitle>Home</IonTitle>
+          <IonButtons slot="end">
+            <NotificationsButton
+              badgeCount={192}
+              onClick={() => router.push("/home/notifications")}
+            />
+          </IonButtons>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen color="lightest">

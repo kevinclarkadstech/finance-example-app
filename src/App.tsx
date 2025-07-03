@@ -25,21 +25,27 @@ import "@ionic/react/css/display.css";
  */
 
 /* import '@ionic/react/css/palettes/dark.always.css'; */
-/* import '@ionic/react/css/palettes/dark.class.css'; */
-import "@ionic/react/css/palettes/dark.system.css";
+import "@ionic/react/css/palettes/dark.class.css";
+// import "@ionic/react/css/palettes/dark.system.css";
 
 /* Theme variables */
 import "./theme/variables.css";
 import { AppTabs } from "./shared/ui/components/AppTabs/AppTabs";
 import { AppHeader } from "@shared/ui/components/AppHeader/AppHeader";
+import { useAuth } from "@shared/ui/hooks/useAuth/useAuth";
+import { AuthRouter } from "@auth/ui/AuthRouter";
+import { Redirect } from "react-router-dom";
 
 setupIonicReact();
 
-export const App: React.FC = () => (
-  <IonApp>
-    <IonReactRouter>
-      <AppHeader />
-      <AppTabs />
-    </IonReactRouter>
-  </IonApp>
-);
+export const App: React.FC = () => {
+  return (
+    <IonApp>
+      <IonReactRouter>
+        <AppHeader />
+        <AuthRouter />
+        <AppTabs />
+      </IonReactRouter>
+    </IonApp>
+  );
+};

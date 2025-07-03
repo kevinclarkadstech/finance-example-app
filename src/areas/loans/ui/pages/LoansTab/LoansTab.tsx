@@ -10,11 +10,11 @@ export const LoansTab: React.FC = () => {
   return (
     <IonPage>
       <IonHeader>
-        <IonToolbar>
+        <IonToolbar color="light">
           <IonTitle>Loans</IonTitle>
         </IonToolbar>
       </IonHeader>
-      <IonContent fullscreen></IonContent>
+      <IonContent fullscreen color="lightest"></IonContent>
     </IonPage>
   );
 };

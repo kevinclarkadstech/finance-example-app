@@ -15,8 +15,11 @@ import { CreditCardTab } from "@credit-card/ui/pages/CreditCardTab/CreditCardTab
 import { BankingTab } from "@banking/ui/pages/BankingTab/BankingTab";
 import { HomeTab } from "@home/ui/pages/HomeTab/HomeTab";
 import { InvestTab } from "@invest/ui/pages/InvestTab/InvestTab";
+import { HomeRoutes } from "@home/ui/HomeRoutes";
+import { useAuth } from "@shared/ui/hooks/useAuth/useAuth";
 
 export function AppTabs() {
+  const auth = useAuth();
   const [selectedTab, setSelectedTab] = useState<
     ("home" | "invest" | "banking" | "credit-card" | "loans") | undefined
   >();
@@ -39,12 +42,26 @@ export function AppTabs() {
     }
   }, [location]);
 
+  if (auth.isLoggedIn && location.pathname.startsWith("/auth")) {
+    return <Redirect to="/home" />;
+  }
+
+  if (!auth.isLoggedIn && !location.pathname.startsWith("/auth")) {
+    console.log("Redirecting to login");
+    return <Redirect to="/auth/login" />;
+  }
+
+  if (!auth.isLoggedIn) {
+    return null;
+  }
+
   return (
     <IonTabs>
       <IonRouterOutlet style={{ marginTop: "36px" }}>
-        <Route exact path="/home">
+        {/* <Route exact path="/home">
           <HomeTab />
-        </Route>
+        </Route> */}
+        <HomeRoutes />
         <Route exact path="/invest">
           <InvestTab />
         </Route>
