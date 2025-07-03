@@ -10,13 +10,12 @@ import { home, cash, barChart, card, ribbon } from "ionicons/icons";
 import { Route, Redirect, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import "./AppTabs.css";
-import { LoansTab } from "@loans/ui/pages/LoansTab/LoansTab";
-import { CreditCardTab } from "@credit-card/ui/pages/CreditCardTab/CreditCardTab";
-import { BankingTab } from "@banking/ui/pages/BankingTab/BankingTab";
-import { HomeTab } from "@home/ui/pages/HomeTab/HomeTab";
-import { InvestTab } from "@invest/ui/pages/InvestTab/InvestTab";
 import { HomeRoutes } from "@home/ui/HomeRoutes";
 import { useAuth } from "@shared/ui/hooks/useAuth/useAuth";
+import { CreditCardRoutes } from "@credit-card/ui/CreditCardRoutes";
+import { InvestRoutes } from "@invest/ui/InvestRoutes";
+import { LoansRoutes } from "@loans/ui/LoansRoutes";
+import { BankingRoutes } from "@banking/ui/BankingRoutes";
 
 export function AppTabs() {
   const auth = useAuth();
@@ -58,22 +57,11 @@ export function AppTabs() {
   return (
     <IonTabs>
       <IonRouterOutlet style={{ marginTop: "36px" }}>
-        {/* <Route exact path="/home">
-          <HomeTab />
-        </Route> */}
-        <HomeRoutes />
-        <Route exact path="/invest">
-          <InvestTab />
-        </Route>
-        <Route path="/banking">
-          <BankingTab />
-        </Route>
-        <Route path="/credit-card">
-          <CreditCardTab />
-        </Route>
-        <Route path="/loans">
-          <LoansTab />
-        </Route>
+        <Route path="/home" component={HomeRoutes} />
+        <Route path="/banking" component={BankingRoutes} />
+        <Route path="/credit-card" component={CreditCardRoutes} />
+        <Route path="/invest" component={InvestRoutes} />
+        <Route path="/loans" component={LoansRoutes} />
         <Route exact path="/">
           <Redirect to="/home" />
         </Route>

@@ -8,7 +8,7 @@ export function CreditCardRoutes() {
     <IonRouterOutlet>
       <Route path="/credit-card" component={CreditCardTab} exact={true} />
       <Route
-        path="/credit-card/:cardId/details"
+        path="/credit-card/:cardId"
         component={CreditCardDetailPage}
         exact={true}
       />
