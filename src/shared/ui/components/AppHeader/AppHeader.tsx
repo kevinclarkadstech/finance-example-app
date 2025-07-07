@@ -29,8 +29,8 @@ export function AppHeader() {
       <IonToolbar
         color="primary"
         style={{
-          "--min-height": "36px",
-          height: "36px",
+          "--min-height": "48px",
+          height: "48px",
           "--padding-top": "0px",
           "--padding-bottom": "0px",
           paddingTop: "0px",
@@ -60,7 +60,7 @@ export function AppHeader() {
             display: "flex",
             alignItems: "center",
             justifyContent: "space-between",
-            height: "36px",
+            height: "48px",
           }}
         >
           {/* <div style={{ display: "flex", alignItems: "center" }}>
@@ -86,7 +86,7 @@ export function AppHeader() {
               marginLeft: "10px",
             }}
           />
-          <IonButtons slot="end" style={{ marginRight: "10px" }}>
+          <IonButtons slot="end" style={{ marginRight: "3px" }}>
             <IonButton
               slot="icon-only"
               size="small"

@@ -2,6 +2,7 @@ import { IonRouterOutlet } from "@ionic/react";
 import { Redirect, Route, useLocation } from "react-router";
 import { LogInPage } from "./pages/LogInPage/LogInPage";
 import { useAuth } from "@shared/ui/hooks/useAuth/useAuth";
+import { RegisterPage } from "./pages/RegisterPage/RegisterPage";
 
 export function AuthRouter() {
   const auth = useAuth();
@@ -19,13 +20,9 @@ export function AuthRouter() {
     return null;
   }
   return (
-    <IonRouterOutlet id="auth-router" style={{ marginTop: "36px" }}>
+    <IonRouterOutlet id="auth-router" style={{ marginTop: "48px" }}>
       <Route path="/auth/login" component={LogInPage} exact={true} />
-      <Route
-        path="/auth/register"
-        component={() => <div>Register Page</div>}
-        exact={true}
-      />
+      <Route path="/auth/register" component={RegisterPage} exact={true} />
       <Route exact path="/">
         <Redirect to="/auth/login" />
       </Route>

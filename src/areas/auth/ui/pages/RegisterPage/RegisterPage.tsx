@@ -13,13 +13,12 @@ import {
   IonTitle,
   IonToolbar,
 } from "@ionic/react";
-import { mockCurrentUser } from "@shared/mocks/mock-current-user";
 import { useAuth } from "@shared/ui/hooks/useAuth/useAuth";
-import { wait } from "@shared/util/wait/wait";
 import { useState } from "react";
-import "./LogInPage.css";
+import "./RegisterPage.css";
+import { createToastMessage } from "@shared/util/createToastMessage/createToastMessage";
 
-export function LogInPage() {
+export function RegisterPage() {
   const auth = useAuth();
   const [loading, setLoading] = useState<boolean>(false);
 
@@ -28,7 +27,7 @@ export function LogInPage() {
       <IonLoading isOpen={loading} message="Logging in..." />
       <IonHeader>
         <IonToolbar color="light">
-          <IonTitle>Log In</IonTitle>
+          <IonTitle>Register</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen class="ion-padding">
@@ -49,9 +48,7 @@ export function LogInPage() {
                   label="Email"
                   labelPlacement="floating"
                   autofocus
-                  value={
-                    Object.keys(mockCurrentUser.emails)[0] || "test@test.com"
-                  } // Use the first key of mockCurrentUser as email
+                  value="" // Use the first key of mockCurrentUser as email
                 />
               </IonItem>
               <IonItem color="lightest">
@@ -59,7 +56,15 @@ export function LogInPage() {
                   type="password"
                   label="Password"
                   labelPlacement="floating"
-                  value="password123"
+                  value=""
+                />
+              </IonItem>
+              <IonItem color="lightest">
+                <IonInput
+                  type="password"
+                  label="Confirm Password"
+                  labelPlacement="floating"
+                  value=""
                 />
               </IonItem>
               <IonButton
@@ -67,13 +72,12 @@ export function LogInPage() {
                 color="primary"
                 className="ion-margin-top"
                 onClick={async () => {
-                  setLoading(true);
-                  await wait(1500); // Simulate network delay
-                  auth.logIn(mockCurrentUser);
-                  setLoading(false);
+                  await createToastMessage(
+                    "Registration functionality is not implemented yet."
+                  );
                 }}
               >
-                Log In
+                Register
               </IonButton>
               <IonButton
                 expand="block"
@@ -81,9 +85,9 @@ export function LogInPage() {
                 color="primary"
                 fill="clear"
                 className="ion-margin-top"
-                routerLink="/auth/register"
+                routerLink="/auth/login"
               >
-                Register
+                Log In
               </IonButton>
             </IonList>
           </IonCardContent>

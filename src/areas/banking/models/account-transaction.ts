@@ -1,12 +1,12 @@
-import { BankingAccountCurrencies } from "@banking/constants/banking-account-currencies";
+import { AccountCurrencies } from "@banking/constants/account-currencies";
 import { BankingTransactionStatus } from "@banking/constants/banking-transaction-status";
 
-export type BankingAccountTransaction = {
+export type AccountTransaction = {
   id: string;
   created: string; // ISO 8601 date string
   updated: string; // ISO 8601 date string
   amount: number; // Amount in the smallest currency unit (e.g., cents for USD)
-  currency: BankingAccountCurrencies;
+  currency: AccountCurrencies;
   description: string; // Description of the transaction
   type: "credit" | "debit"; // Type of transaction
   accountId: string; // ID of the associated banking account

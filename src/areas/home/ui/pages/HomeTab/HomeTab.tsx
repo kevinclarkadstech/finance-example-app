@@ -15,6 +15,9 @@ import {
 } from "@ionic/react";
 import { NotificationsButton } from "@shared/ui/components/NotificationsButton/NotificationsButton";
 
+import "./HomeTab.css";
+import { mockCurrentUser } from "@shared/mocks/mock-current-user";
+
 export const HomeTab: React.FC = () => {
   const router = useIonRouter();
   return (
@@ -30,7 +33,7 @@ export const HomeTab: React.FC = () => {
           </IonButtons>
         </IonToolbar>
       </IonHeader>
-      <IonContent fullscreen color="lightest">
+      <IonContent fullscreen>
         <IonGrid>
           <IonRow>
             <IonCol size="12" sizeLg="6" sizeXl="6">
@@ -43,7 +46,7 @@ export const HomeTab: React.FC = () => {
                 >
                   <IonCard color="light">
                     <IonCardContent>
-                      <h3>Welcome Back! </h3>
+                      <h3>Good afternoon, {mockCurrentUser.displayName}!</h3>
                       {/* <h4>{user$.get().name}</h4> */}
                     </IonCardContent>
                   </IonCard>

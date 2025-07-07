@@ -18,14 +18,12 @@ export function NotificationsButton({
             top: "3px",
             right: "-5px",
             fontSize: "0.6rem",
-            fontWeight: "lighter",
-            padding: "1px 2px",
+            padding: "2px 3px",
             zIndex: 1000,
           }}
         >
           <div
             style={{
-              fontWeight: "lighter",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",

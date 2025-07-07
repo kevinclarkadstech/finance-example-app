@@ -1,13 +1,13 @@
 import {
-  IonCard,
-  IonCardContent,
-  IonCardHeader,
   IonContent,
   IonHeader,
   IonPage,
   IonTitle,
   IonToolbar,
 } from "@ionic/react";
+
+import "./BankingTab.css";
+import { AccountsOverviewCard } from "@banking/ui/components/AccountsOverviewCard/AccountsOverviewCard";
 
 export const BankingTab: React.FC = () => {
   return (
@@ -17,13 +17,8 @@ export const BankingTab: React.FC = () => {
           <IonTitle>Banking</IonTitle>
         </IonToolbar>
       </IonHeader>
-      <IonContent fullscreen color="lightest">
-        <IonCard>
-          <IonCardHeader>
-            <h2>Accounts</h2>
-          </IonCardHeader>
-          <IonCardContent></IonCardContent>
-        </IonCard>
+      <IonContent fullscreen>
+        <AccountsOverviewCard />
       </IonContent>
     </IonPage>
   );
