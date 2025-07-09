@@ -53,7 +53,6 @@ export const HomeTab: React.FC = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
-        <QuickActionsBar />
         <div
           style={{
             display: "flex",
@@ -91,6 +90,11 @@ export const HomeTab: React.FC = () => {
             </IonCardContent>
           </IonCard>
         </div>
+        <IonCard>
+          <IonCardContent style={{ padding: "0 8px" }}>
+            <QuickActionsBar />
+          </IonCardContent>
+        </IonCard>
         {/* <IonGrid>
           <IonRow>
             <IonCol size="12" sizeLg="6" sizeXl="6">

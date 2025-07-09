@@ -2,6 +2,7 @@ import {
   IonButton,
   IonButtons,
   IonCard,
+  IonCardContent,
   IonChip,
   IonContent,
   IonFab,
@@ -35,41 +36,49 @@ export const BankingTab: React.FC = () => {
         <AccountsOverviewCard />
         {/* <QuickActionsCard /> */}
         <IonCard>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              padding: "10px",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            <div>
-              <IonText color="darkest">
-                <h4 style={{ fontSize: "1.1rem" }}>
-                  Track your spending habits
-                </h4>
-              </IonText>
-              <p style={{ fontSize: "0.8rem" }}>
-                See where your money is going, and analyze how you can improve
-              </p>
+          <IonCardContent style={{ padding: "0 8px 8px 8px" }}>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                padding: " 5px 10px",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <div>
+                <IonText color="darkest">
+                  <h4 style={{ fontSize: "1.1rem" }}>
+                    Track your spending habits
+                  </h4>
+                </IonText>
+                <p style={{ fontSize: "0.8rem" }}>
+                  See where your money is going, and analyze how you can improve
+                </p>
+              </div>
+
+              <IonImg
+                src="/images/money.png"
+                style={{ width: "100px", height: "100px", marginRight: "10px" }}
+              />
             </div>
 
-            <IonImg
-              src="/images/money.png"
-              style={{ width: "100px", height: "100px", marginRight: "10px" }}
-            />
-          </div>
-
-          <IonButton
-            size="small"
-            fill="outline"
-            color="primary"
-            shape="round"
-            style={{ fontSize: "0.7rem", float: "right", marginRight: "10px" }}
-          >
-            Manage spending
-          </IonButton>
+            <div style={{ display: "flex", justifyContent: "end" }}>
+              <IonButton
+                size="small"
+                fill="outline"
+                color="primary"
+                shape="round"
+                style={{
+                  fontSize: "0.7rem",
+                  textAlign: "right",
+                  marginRight: "10px",
+                }}
+              >
+                Manage spending
+              </IonButton>
+            </div>
+          </IonCardContent>
         </IonCard>
         <IonFab slot="fixed" horizontal="end" vertical="bottom">
           <IonFabButton color="tertiary">

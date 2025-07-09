@@ -8,7 +8,7 @@ import {
   IonToolbar,
 } from "@ionic/react";
 import { HorizontalScrollingContainer } from "@shared/ui/components/HorizontalScrollingContainer/HorizontalScrollingContainer";
-import { createOutline } from "ionicons/icons";
+import { cardOutline, createOutline } from "ionicons/icons";
 
 export function QuickActionsBar() {
   return (
@@ -50,9 +50,20 @@ export function QuickActionsBar() {
           </IonButton>
         </IonButtons>
       </IonToolbar>
-      <HorizontalScrollingContainer>
+      <HorizontalScrollingContainer spaceBetweenItems="12px">
         <SendWithZelleButton routerLink="/home/banking/send-money-with-zelle" />
         <MakeBankingTransferButton routerLink="/home/banking/transfers" />
+        <IonButton
+          color="light"
+          fill="solid"
+          size="small"
+          routerLink="/home/banking/transactions"
+          shape="round"
+          style={{ "--padding-start": "16px", "--padding-end": "16px" }}
+        >
+          <IonIcon slot="start" icon={cardOutline} color="medium" />
+          <span style={{ marginTop: "3px" }}>Pay Credit Card</span>
+        </IonButton>
       </HorizontalScrollingContainer>
     </div>
   );
