@@ -17,6 +17,7 @@ import { NotificationsButton } from "@shared/ui/components/NotificationsButton/N
 
 import "./HomeTab.css";
 import { mockCurrentUser } from "@shared/mocks/mock-current-user";
+import { QuickActionsBar } from "@home/ui/components/QuickActionsBar/QuickActionsBar";
 
 export const HomeTab: React.FC = () => {
   const router = useIonRouter();
@@ -34,6 +35,7 @@ export const HomeTab: React.FC = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
+        <QuickActionsBar />
         <IonGrid>
           <IonRow>
             <IonCol size="12" sizeLg="6" sizeXl="6">

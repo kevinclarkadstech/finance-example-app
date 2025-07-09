@@ -21,6 +21,7 @@ import { AccountsOverviewCard } from "@banking/ui/components/AccountsOverviewCar
 import { add, cashOutline, chevronUp } from "ionicons/icons";
 import { ZelleIcon } from "@banking/ui/components/SendWithZelleButton/ZelleIcon/ZelleIcon";
 import { SendWithZelleButton } from "@banking/ui/components/SendWithZelleButton/SendWithZelleButton";
+import { QuickActionsCard } from "@banking/ui/components/QuickActionsCard/QuickActionsCard";
 
 export const BankingTab: React.FC = () => {
   return (
@@ -32,31 +33,7 @@ export const BankingTab: React.FC = () => {
       </IonHeader>
       <IonContent fullscreen>
         <AccountsOverviewCard />
-        <IonCard color="lightest">
-          <IonChip color="dark">
-            <ZelleIcon />
-            <IonText style={{ fontSize: "0.8rem" }}>
-              Send money with Zelle
-            </IonText>
-          </IonChip>
-          <IonButton
-            size="small"
-            fill="solid"
-            shape="round"
-            style={{
-              "--padding-start": "8px",
-              "--padding-end": "8px",
-              "--background": "#7c10b2",
-              "--color": "#fff",
-              fontSize: "0.7rem",
-            }}
-          >
-            <ZelleIcon width="20px" height="20px" />
-            Send money with Zelle
-          </IonButton>
-
-          <SendWithZelleButton shape="round" size="small" />
-        </IonCard>
+        <QuickActionsCard />
         <IonCard>
           <div
             style={{

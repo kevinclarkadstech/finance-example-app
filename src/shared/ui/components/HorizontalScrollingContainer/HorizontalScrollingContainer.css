@@ -1,0 +1,18 @@
+.horizontal-scrolling-container {
+  width: 100%; /* Example width */
+  /* Example fixed height */
+  overflow-x: scroll; /* Enable horizontal scrolling */
+  overflow-y: hidden; /* Hide vertical scrolling */
+  white-space: nowrap; /* Prevent content from wrapping */
+  scrollbar-width: none; /* Hide scrollbar for Firefox */
+}
+
+.horizontal-scrolling-container::-webkit-scrollbar {
+  display: none; /* Hide scrollbar for Chrome, Safari, and Opera */
+}
+
+.horizontal-scrolling-container > * {
+  /* Prevent items from shrinking */
+  margin-right: 16px; /* Space between items */
+  display: inline-block; /* Ensure items are displayed inline */
+}

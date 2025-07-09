@@ -12,7 +12,7 @@ import {
 } from "@ionic/react";
 import { BackButton } from "@shared/ui/components/BackButton/BackButton";
 
-export function SendMoneyWithZellePage({ backPath }: { backPath?: string }) {
+export function MakeBankingTransferPage({ backPath }: { backPath?: string }) {
   return (
     <IonPage>
       <IonHeader>
@@ -20,13 +20,13 @@ export function SendMoneyWithZellePage({ backPath }: { backPath?: string }) {
           <IonButtons slot="start">
             <BackButton defaultHref={backPath || "/banking"} />
           </IonButtons>
-          <IonTitle>Send Money With Zelle</IonTitle>
+          <IonTitle>Make Banking Transfer</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen color="lightest" class="ion-padding">
         <p>
-          Zelle allows you to send money to friends and family directly from
-          your bank account.
+          Use this page to make a banking transfer between your accounts or to
+          another bank account.
         </p>
         <IonList>
           <IonItem>

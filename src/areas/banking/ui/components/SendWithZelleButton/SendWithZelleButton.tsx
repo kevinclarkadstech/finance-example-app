@@ -14,7 +14,10 @@ export function SendWithZelleButton(
 ) {
   return (
     <IonButton
+      color="zelle"
       routerLink="/banking/send-money-with-zelle"
+      size="small"
+      shape="round"
       style={{
         ...{
           "--padding-start": "8px",
@@ -22,15 +25,15 @@ export function SendWithZelleButton(
           "--padding-top": "0px",
           "--padding-bottom": "0px",
           "--background": zelleBackgroundColor,
-          "--background-focused": zelleBackgroundColor,
-          "--background-hover": zelleBackgroundColor,
-          "--background-activated": zelleBackgroundColor,
-          "--background-pressed": zelleBackgroundColor,
-          "--background-activated-focused": zelleBackgroundColor,
-          "--background-activated-hover": zelleBackgroundColor,
-          "--background-activated-pressed": zelleBackgroundColor,
+          //   "--background-focused": zelleBackgroundColor,
+          //   "--background-hover": zelleBackgroundColor,
+          //   "--background-activated": zelleBackgroundColor,
+          //   "--background-pressed": zelleBackgroundColor,
+          //   "--background-activated-focused": zelleBackgroundColor,
+          //   "--background-activated-hover": zelleBackgroundColor,
+          //   "--background-activated-pressed": zelleBackgroundColor,
           "--color": zelleTextColor,
-          fontSize: props.fontSize || "0.7rem",
+          fontSize: props.fontSize,
         },
         ...{
           width: props.width,
@@ -40,10 +43,8 @@ export function SendWithZelleButton(
       }}
       {...props}
     >
-      <ZelleIcon
-        height={props.iconSize ?? "20px"}
-        width={props.iconSize ?? "20px"}
-      />
+      <ZelleIcon height={props.iconSize} width={props.iconSize} />
+      <span style={{ marginLeft: "4px" }} />
       Send money with Zelle
     </IonButton>
   );
