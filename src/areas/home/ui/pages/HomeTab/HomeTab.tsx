@@ -18,9 +18,24 @@ import { NotificationsButton } from "@shared/ui/components/NotificationsButton/N
 import "./HomeTab.css";
 import { mockCurrentUser } from "@shared/mocks/mock-current-user";
 import { QuickActionsBar } from "@home/ui/components/QuickActionsBar/QuickActionsBar";
+import { useEffect, useState } from "react";
 
 export const HomeTab: React.FC = () => {
   const router = useIonRouter();
+  const [numNewNotifications, setNumNewNotifications] = useState<number>(0);
+  // Simulate fetching new notifications count
+  // In a real application, this would be fetched from an API or state management solution
+
+  useEffect(() => {
+    const fetchNewNotificationsCount = async () => {
+      // Simulate an API call
+      const newNotificationsCount = await new Promise<number>((resolve) =>
+        setTimeout(() => resolve(5), 1000)
+      );
+      setNumNewNotifications(newNotificationsCount);
+    };
+    fetchNewNotificationsCount();
+  }, []);
   return (
     <IonPage>
       <IonHeader>
@@ -28,15 +43,55 @@ export const HomeTab: React.FC = () => {
           <IonTitle>Home</IonTitle>
           <IonButtons slot="end">
             <NotificationsButton
-              badgeCount={192}
-              onClick={() => router.push("/home/notifications")}
+              badgeCount={numNewNotifications}
+              onClick={() => {
+                setNumNewNotifications(0);
+                router.push("/home/notifications");
+              }}
             />
           </IonButtons>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
         <QuickActionsBar />
-        <IonGrid>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "start",
+            flexWrap: "wrap",
+            marginTop: "16px",
+            gap: "8px",
+            padding: "0 8px",
+          }}
+        >
+          <IonCard color="light" style={{ margin: "0" }}>
+            <IonCardContent style={{ padding: "12px" }}>
+              <h3 style={{ fontSize: "1.0rem", marginBottom: "8px" }}>
+                Good afternoon, {mockCurrentUser.displayName}!
+              </h3>
+              <p style={{ fontSize: "0.8rem" }}>You have 5 new messages.</p>
+              <p style={{ fontSize: "0.8rem" }}>
+                <strong>Last login:</strong> 2 days ago
+              </p>
+            </IonCardContent>
+          </IonCard>
+          <IonCard color="tertiary" style={{ margin: "0" }}>
+            <IonCardContent>
+              <h3
+                style={{
+                  fontSize: "0.8rem",
+                  marginBottom: "8px",
+                  color: "var(--ion-color-light-shade)",
+                }}
+              >
+                Your Net Worth
+              </h3>
+              <h3 style={{ fontSize: "1.3rem" }}>$10,046.32</h3>
+            </IonCardContent>
+          </IonCard>
+        </div>
+        {/* <IonGrid>
           <IonRow>
             <IonCol size="12" sizeLg="6" sizeXl="6">
               <IonRow>
@@ -49,7 +104,6 @@ export const HomeTab: React.FC = () => {
                   <IonCard color="light">
                     <IonCardContent>
                       <h3>Good afternoon, {mockCurrentUser.displayName}!</h3>
-                      {/* <h4>{user$.get().name}</h4> */}
                     </IonCardContent>
                   </IonCard>
                 </IonCol>
@@ -86,7 +140,7 @@ export const HomeTab: React.FC = () => {
             </IonCol>
             <IonCol size="12" sizeLg="6" sizeXl="6"></IonCol>
           </IonRow>
-        </IonGrid>
+        </IonGrid> */}
       </IonContent>
     </IonPage>
   );

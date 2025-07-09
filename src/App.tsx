@@ -32,9 +32,7 @@ import "@ionic/react/css/palettes/dark.class.css";
 import "./theme/variables.css";
 import { AppTabs } from "./shared/ui/components/AppTabs/AppTabs";
 import { AppHeader } from "@shared/ui/components/AppHeader/AppHeader";
-import { useAuth } from "@shared/ui/hooks/useAuth/useAuth";
 import { AuthRouter } from "@auth/ui/AuthRouter";
-import { Redirect } from "react-router-dom";
 
 setupIonicReact();
 

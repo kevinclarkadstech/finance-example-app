@@ -1,5 +1,6 @@
 import {
   IonButton,
+  IonButtons,
   IonCard,
   IonCardContent,
   IonCardHeader,
@@ -18,6 +19,7 @@ import { useAuth } from "@shared/ui/hooks/useAuth/useAuth";
 import { wait } from "@shared/util/wait/wait";
 import { useState } from "react";
 import "./LogInPage.css";
+import { BackButton } from "@shared/ui/components/BackButton/BackButton";
 
 export function LogInPage() {
   const auth = useAuth();

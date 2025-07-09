@@ -33,7 +33,7 @@ export const BankingTab: React.FC = () => {
       </IonHeader>
       <IonContent fullscreen>
         <AccountsOverviewCard />
-        <QuickActionsCard />
+        {/* <QuickActionsCard /> */}
         <IonCard>
           <div
             style={{
@@ -72,7 +72,7 @@ export const BankingTab: React.FC = () => {
           </IonButton>
         </IonCard>
         <IonFab slot="fixed" horizontal="end" vertical="bottom">
-          <IonFabButton>
+          <IonFabButton color="tertiary">
             <IonIcon icon={add}></IonIcon>
           </IonFabButton>
           <IonFabList side="top">

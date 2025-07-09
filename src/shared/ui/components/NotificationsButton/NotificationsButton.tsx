@@ -2,7 +2,7 @@ import { IonButton, IonBadge, IonIcon } from "@ionic/react";
 import { notificationsOutline } from "ionicons/icons";
 
 export function NotificationsButton({
-  badgeCount,
+  badgeCount = 0,
   onClick,
 }: {
   badgeCount?: number;
@@ -10,15 +10,15 @@ export function NotificationsButton({
 }) {
   return (
     <IonButton size="large" slot="icon-only" onClick={onClick}>
-      {badgeCount && badgeCount > 0 && (
+      {badgeCount !== undefined && badgeCount > 0 && (
         <IonBadge
           color="danger"
           style={{
             position: "absolute",
-            top: "3px",
-            right: "-5px",
-            fontSize: "0.6rem",
-            padding: "2px 3px",
+            top: "0px",
+            right: "0px",
+            fontSize: "0.7rem",
+            padding: "2px 5px",
             zIndex: 1000,
           }}
         >

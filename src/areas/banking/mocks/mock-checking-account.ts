@@ -2,7 +2,7 @@ import { Account } from "@banking/models/account";
 
 export const mockCheckingAccount: Account = {
   id: "checking-account-1",
-  name: "My Checking Account",
+  name: "My Primary Checking Account",
   type: "checking",
   balance: 1500.75,
   currency: "USD",

@@ -1,5 +1,6 @@
 import {
   IonButton,
+  IonButtons,
   IonCard,
   IonCardContent,
   IonCardHeader,
@@ -17,6 +18,7 @@ import { useAuth } from "@shared/ui/hooks/useAuth/useAuth";
 import { useState } from "react";
 import "./RegisterPage.css";
 import { createToastMessage } from "@shared/util/createToastMessage/createToastMessage";
+import { BackButton } from "@shared/ui/components/BackButton/BackButton";
 
 export function RegisterPage() {
   const auth = useAuth();
@@ -27,6 +29,9 @@ export function RegisterPage() {
       <IonLoading isOpen={loading} message="Logging in..." />
       <IonHeader>
         <IonToolbar color="light">
+          <IonButtons slot="start">
+            <BackButton defaultHref="/auth/login" />
+          </IonButtons>
           <IonTitle>Register</IonTitle>
         </IonToolbar>
       </IonHeader>
