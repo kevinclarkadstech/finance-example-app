@@ -10,7 +10,7 @@ export type Account = {
   currency: AccountCurrencies; // Extendable for other currencies
   created: string; // ISO 8601 date string
   updated: string; // ISO 8601 date string
-  lastTransaction: string; // ISO 8601 date string
+  lastTransactionDate: string; // ISO 8601 date string
   accountNumber: string;
   routingNumber: string;
   type: AccountTypes;

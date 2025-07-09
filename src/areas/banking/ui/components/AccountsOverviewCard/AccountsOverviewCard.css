@@ -1,21 +1,29 @@
-ion-card {
+.accounts-overview-card ion-card {
   padding-top: 0;
   padding-left: 0;
   padding-right: 0;
+  --background: var(--ion-color-lightest);
 }
 
-ion-card-header {
+.accounts-overview-card ion-card-header {
   padding-top: 0;
   padding-left: 0;
   padding-right: 0;
+  --background: var(--ion-color-lightest);
 }
 
-ion-card-content {
+.accounts-overview-card ion-card-content {
   --padding-end: 0;
   --padding-start: 0;
+  --background: var(--ion-color-lightest);
 }
 
-.card-content-ios {
+.accounts-overview-card .card-content-ios {
   padding-left: 0;
   padding-right: 0;
+  --background: var(--ion-color-lightest);
+}
+
+ion-item {
+  --background: var(--ion-color-lightest);
 }
