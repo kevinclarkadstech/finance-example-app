@@ -18,23 +18,25 @@ import { NotificationsButton } from "@shared/ui/components/NotificationsButton/N
 import "./HomeTab.css";
 import { mockCurrentUser } from "@shared/mocks/mock-current-user";
 import { QuickActionsBar } from "@home/ui/components/QuickActionsBar/QuickActionsBar";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { ReactivePrimitive } from "@shared/models/reactive-primitive";
+import { wait } from "@shared/util/wait/wait";
+import { useReactive } from "@shared/ui/hooks/useReactive/useReactive";
+
+const notificationsCount$ = new ReactivePrimitive<number>(0);
+let hasViewedNotifications = false;
 
 export const HomeTab: React.FC = () => {
   const router = useIonRouter();
-  const [numNewNotifications, setNumNewNotifications] = useState<number>(0);
-  // Simulate fetching new notifications count
-  // In a real application, this would be fetched from an API or state management solution
+
+  useReactive(notificationsCount$);
 
   useEffect(() => {
-    const fetchNewNotificationsCount = async () => {
-      // Simulate an API call
-      const newNotificationsCount = await new Promise<number>((resolve) =>
-        setTimeout(() => resolve(5), 1000)
-      );
-      setNumNewNotifications(newNotificationsCount);
-    };
-    fetchNewNotificationsCount();
+    wait(800).then(() => {
+      if (!hasViewedNotifications) {
+        notificationsCount$.set(5);
+      }
+    });
   }, []);
   return (
     <IonPage>
@@ -43,9 +45,10 @@ export const HomeTab: React.FC = () => {
           <IonTitle>Home</IonTitle>
           <IonButtons slot="end">
             <NotificationsButton
-              badgeCount={numNewNotifications}
+              badgeCount={notificationsCount$.value}
               onClick={() => {
-                setNumNewNotifications(0);
+                notificationsCount$.set(0);
+                hasViewedNotifications = true;
                 router.push("/home/notifications");
               }}
             />

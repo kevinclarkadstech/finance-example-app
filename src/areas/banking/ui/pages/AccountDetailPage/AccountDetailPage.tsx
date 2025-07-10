@@ -143,7 +143,9 @@ export function AccountDetailPage({ accountId }: { accountId: string }) {
                     ))}
                   </IonList>
                 ) : (
-                  <div>No recent transactions found</div>
+                  <div className="ion-padding">
+                    No recent transactions found.
+                  </div>
                 )}
               </IonCardContent>
             </IonCard>

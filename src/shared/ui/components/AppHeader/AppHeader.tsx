@@ -15,6 +15,7 @@ import {
   person,
   personOutline,
   personCircleOutline,
+  personCircle,
 } from "ionicons/icons";
 import { useEffect, useState } from "react";
 import { useReactive } from "../../hooks/useReactive/useReactive";
@@ -29,8 +30,8 @@ export function AppHeader() {
       <IonToolbar
         color="primary"
         style={{
-          "--min-height": "48px",
-          height: "48px",
+          "--min-height": "56px",
+          height: "56px",
           "--padding-top": "0px",
           "--padding-bottom": "0px",
           paddingTop: "0px",
@@ -81,57 +82,16 @@ export function AppHeader() {
           <img
             src="https://d3331otr86r7j1.cloudfront.net/sofiinc/auth/sofi-auth/assets/branding/logos/sofi_logo_white_416x116.png"
             alt="SoFi Logo"
-            height="24"
+            height="22"
             style={{
               marginLeft: "10px",
             }}
           />
-          <IonButtons slot="end" style={{ marginRight: "3px" }}>
-            <IonButton
-              slot="icon-only"
-              size="small"
-              style={{
-                maxHeight: "28px",
-                maxWidth: "28px",
-                minWidth: "28px",
-                minHeight: "28px",
-                padding: "0",
-                "--padding-start": "0px",
-                "--padding-end": "0px",
-                "--padding-top": "0",
-                "--padding-bottom": "0",
-              }}
-              role="button"
-              color="lightest"
-              fill="clear"
-              shape="round"
-            >
-              <IonIcon
-                icon={personCircleOutline}
-                color="lightest"
-                style={{ width: "28px", height: "28px" }}
-              />
+          <IonButtons slot="end" style={{ marginRight: "12px" }}>
+            <IonButton slot="icon-only">
+              <IonIcon icon={person} color="lightest" />
             </IonButton>
-            <IonButton
-              size="small"
-              style={{
-                maxHeight: "24px",
-                maxWidth: "24px",
-                minWidth: "24px",
-                minHeight: "24px",
-              }}
-              role="button"
-              color="lightest"
-              fill="solid"
-              shape="round"
-              onClick={() => {
-                console.log("Toggle theme");
-                toggleTheme();
-                // currentTheme$.set(
-                //   currentTheme$.value === "light" ? "dark" : "light"
-                // );
-              }}
-            >
+            <IonButton slot="icon-only" color="lightest" onClick={toggleTheme}>
               <IonIcon
                 title="theme-toggle-icon"
                 color={theme === "dark" ? "warning" : "tertiary"}

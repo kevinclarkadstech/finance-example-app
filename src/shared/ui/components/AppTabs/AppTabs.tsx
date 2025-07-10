@@ -56,7 +56,7 @@ export function AppTabs() {
 
   return (
     <IonTabs>
-      <IonRouterOutlet style={{ marginTop: "48px" }}>
+      <IonRouterOutlet style={{ marginTop: "56px" }}>
         <Route path="/home" component={HomeRoutes} />
         <Route path="/banking" component={BankingRoutes} />
         <Route path="/credit-card" component={CreditCardRoutes} />

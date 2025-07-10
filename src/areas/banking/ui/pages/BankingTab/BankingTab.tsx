@@ -19,7 +19,7 @@ import {
 
 import "./BankingTab.css";
 import { AccountsOverviewCard } from "@banking/ui/components/AccountsOverviewCard/AccountsOverviewCard";
-import { add, cashOutline, chevronUp } from "ionicons/icons";
+import { add, cashOutline, chevronUp, helpOutline } from "ionicons/icons";
 import { ZelleIcon } from "@banking/ui/components/SendWithZelleButton/ZelleIcon/ZelleIcon";
 import { SendWithZelleButton } from "@banking/ui/components/SendWithZelleButton/SendWithZelleButton";
 import { QuickActionsCard } from "@banking/ui/components/QuickActionsCard/QuickActionsCard";
@@ -88,7 +88,16 @@ export const BankingTab: React.FC = () => {
             <IonButton
               size="small"
               style={{ marginLeft: "-40px", fontSize: "0.7rem" }}
-              color="secondary"
+              color="dark"
+              fill="outline"
+            >
+              <IonIcon icon={helpOutline} />
+              Get Help
+            </IonButton>
+            <IonButton
+              size="small"
+              style={{ marginLeft: "-40px", fontSize: "0.7rem" }}
+              color="primary"
             >
               <IonIcon icon={cashOutline} />
               New Account

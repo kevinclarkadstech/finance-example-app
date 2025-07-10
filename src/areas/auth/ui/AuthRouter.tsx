@@ -20,7 +20,7 @@ export function AuthRouter() {
     return null;
   }
   return (
-    <IonRouterOutlet id="auth-router" style={{ marginTop: "48px" }}>
+    <IonRouterOutlet id="auth-router" style={{ marginTop: "56px" }}>
       <Route path="/auth/login" component={LogInPage} exact={true} />
       <Route path="/auth/register" component={RegisterPage} exact={true} />
       <Route exact path="/">
