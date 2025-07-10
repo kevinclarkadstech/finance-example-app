@@ -81,7 +81,7 @@ export const BankingTab: React.FC = () => {
           </IonCardContent>
         </IonCard>
         <IonFab slot="fixed" horizontal="end" vertical="bottom">
-          <IonFabButton color="tertiary">
+          <IonFabButton color="secondary">
             <IonIcon icon={add}></IonIcon>
           </IonFabButton>
           <IonFabList side="top">

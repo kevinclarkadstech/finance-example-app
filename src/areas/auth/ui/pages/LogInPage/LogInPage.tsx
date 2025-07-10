@@ -66,7 +66,7 @@ export function LogInPage() {
               </IonItem>
               <IonButton
                 expand="block"
-                color="tertiary"
+                color="secondary"
                 className="ion-margin-top"
                 onClick={async () => {
                   setLoading(true);

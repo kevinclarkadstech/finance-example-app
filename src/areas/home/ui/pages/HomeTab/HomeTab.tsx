@@ -78,13 +78,12 @@ export const HomeTab: React.FC = () => {
               </p>
             </IonCardContent>
           </IonCard>
-          <IonCard color="tertiary" style={{ margin: "0" }}>
+          <IonCard color="secondary" style={{ margin: "0" }}>
             <IonCardContent>
               <h3
                 style={{
                   fontSize: "0.8rem",
                   marginBottom: "8px",
-                  color: "var(--ion-color-light-shade)",
                 }}
               >
                 Your Net Worth

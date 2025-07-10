@@ -4,6 +4,7 @@ import {
   IonHeader,
   IonIcon,
   IonText,
+  IonTitle,
   IonToolbar,
 } from "@ionic/react";
 import {
@@ -79,17 +80,19 @@ export function AppHeader() {
               SoFi
             </IonText>
           </div> */}
-          <img
-            src="https://d3331otr86r7j1.cloudfront.net/sofiinc/auth/sofi-auth/assets/branding/logos/sofi_logo_white_416x116.png"
-            alt="SoFi Logo"
-            height="22"
+          <IonIcon
+            slot="start"
+            icon={cashOutline}
+            size="large"
+            color="secondary"
             style={{
-              marginLeft: "10px",
+              marginLeft: "15px",
             }}
           />
+          <IonTitle style={{ paddingLeft: "10px" }}>KevFi</IonTitle>
           <IonButtons slot="end" style={{ marginRight: "12px" }}>
             <IonButton slot="icon-only">
-              <IonIcon icon={person} color="lightest" />
+              <IonIcon icon={person} color="tertiary" />
             </IonButton>
             <IonButton slot="icon-only" color="lightest" onClick={toggleTheme}>
               <IonIcon
