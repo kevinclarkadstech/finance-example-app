@@ -78,7 +78,7 @@ export const HomeTab: React.FC = () => {
               </p>
             </IonCardContent>
           </IonCard>
-          <IonCard color="secondary" style={{ margin: "0" }}>
+          <IonCard color="secondary" style={{ margin: "0", maxWidth: "200px" }}>
             <IonCardContent>
               <h3
                 style={{

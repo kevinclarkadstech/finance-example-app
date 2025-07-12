@@ -15,8 +15,8 @@ export function NotificationsButton({
           color="danger"
           style={{
             position: "absolute",
-            top: "0px",
-            right: "0px",
+            top: "3px",
+            right: "-2px",
             fontSize: "0.7rem",
             padding: "2px 5px",
             zIndex: 1000,

@@ -74,7 +74,7 @@ export function RegisterPage() {
               </IonItem>
               <IonButton
                 expand="block"
-                color="tertiary"
+                color="primary"
                 className="ion-margin-top"
                 onClick={async () => {
                   await createToastMessage(

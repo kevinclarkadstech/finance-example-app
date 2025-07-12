@@ -45,21 +45,21 @@ export const NotificationsListPage: React.FC = () => {
             </IonLabel>
           </IonItem>
           <IonItem detail>
-            <IonIcon color="primary" slot="start" icon={cashOutline} />
+            <IonIcon color="dark" slot="start" icon={cashOutline} />
             <IonLabel>
               Are you looking to get a business or personal loan? We have rates
               starting at 0% APR.{" "}
             </IonLabel>
           </IonItem>
           <IonItem detail>
-            <IonIcon color="tertiary" slot="start" icon={cardOutline} />
+            <IonIcon color="dark" slot="start" icon={cardOutline} />
             <IonLabel>
               You authorized a payment for "My Primary Credit Card" in the
               amount of $150.00 on 10/01/2025.
             </IonLabel>
           </IonItem>
           <IonItem detail>
-            <IonIcon color="success" slot="start" icon={trendingUpOutline} />
+            <IonIcon color="dark" slot="start" icon={trendingUpOutline} />
             <IonLabel>
               Your unrealized gains for "My Investment Account" have increased
               by 5% this month. Keep up the good work!
