@@ -30,6 +30,7 @@ export function AppHeader() {
     <IonHeader>
       <IonToolbar
         color="primary"
+        mode="md"
         style={{
           "--min-height": "56px",
           height: "56px",
